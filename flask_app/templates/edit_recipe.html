@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <title>edit_recipe</title>
+</head>
+<body>
+    <div class="nav_bar">
+        <h1>Edit recipe!</h1>
+        <div class="space_between">
+            <a href="/recipes">back to recipes</a>
+            <a href="/log_out">logout</a>
+        </div>
+    </div>
+    <div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="red_text">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <form action="/update_recipe" method="post">
+        <div class="flex">
+            <div>
+                <input type="hidden" name="user_id" value="{{session['user_id']}}">
+                <input type="hidden" name="id" value="{{recipe.id}}">
+                <label for="name">Name</label>
+                <input type="text" name="name" value="{{recipe.name}}"><br>
+                <!-- #######   do i need value or id or just in there ? ##### -->
+                <label for="description">Description</label>
+                <textarea name="description" value="{{recipe.description}}" cols="20" rows="5">{{recipe.description}}</textarea><br>
+                <label for="instructions">Instructions</label>
+                <textarea name="instructions" id="" cols="20" rows="5">{{recipe.instructions}}</textarea>
+            </div>
+            <div>
+                <label for="date_made">Date Cooked/Made:</label><br>
+                <input type="date" name="date_made" value="" id="">{{recipe.date_made}}<br>
+                <label for="under_30">Under 30 minutes?</label><br>
+                <!--   #####  do i need id or value for date and radios  ########-->
+                {% if recipe.under_30 == 'yes' %}
+                <label for="yes">Yes</label>
+                <input type="radio" name="under_30" id="" checked=true value="yes">
+                <label for="no">No</label>
+                <input type="radio" name="under_30" id="" value="no"><br>
+                {% else %}
+                <label for="yes">Yes</label>
+                <input type="radio" name="under_30" id=""  value="yes">
+                <label for="no">No</label>
+                <input type="radio" name="under_30" id="" checked=true value="no"><br>
+                {% endif %}
+                <button>Submit</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

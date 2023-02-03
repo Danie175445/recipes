@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+    <title>add_recipe</title>
+</head>
+<body>
+    <div class="nav_bar">
+        <h1>Add New recipe!</h1>
+        <div class="space_between">
+            <a href="/recipes">back to recipes</a>
+            <a href="/log_out">logout</a>
+        </div>
+    </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="red_text">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    <form action="/creat_recipe" method="post">
+        <div class="flex">
+            <div>
+                <input type="hidden" name="user_id" value="{{session['user_id']}}">
+                <label for="name">Name</label>
+                <input type="text" name="name"><br>
+                <label for="description">Description</label>
+                <textarea name="description" id="" cols="20" rows="5"></textarea><br>
+                <label for="instructions">Instructions</label>
+                <textarea name="instructions" id="" cols="20" rows="5"></textarea>
+            </div>
+            <div>
+                <label for="date_made">Date Cooked/Made:</label><br>
+                <input type="date" name="date_made" id=""><br>
+                <label for="under_30">Under 30 minutes?</label><br>
+                <!--   #####  do i need id or value  ########-->
+                <input type="radio" name="under_30" id="" value="yes">
+                <label for="yes">Yes</label>
+                <input type="radio" name="under_30" id="" value="no">
+                <label for="no">No</label><br>
+                <button>Submit</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

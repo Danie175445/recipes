@@ -1,0 +1,2 @@
+1. check if email is in DB
+2. are all imports necessary ?

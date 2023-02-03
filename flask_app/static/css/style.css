@@ -1,0 +1,36 @@
+.align_right{
+    text-align: right;
+
+}
+.align_left{
+    text-align: left;
+}
+.space_between{
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+}
+.flex{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+.nav_bar{
+    display: flex;
+    justify-content: space-around;
+}
+.center{
+    display: flex;
+    justify-content: center;
+}
+.recipe_section{
+    border: 2px solid black;
+}
+.flex_apart{
+    display:flex;
+    width: 70%;
+    justify-content: space-around;
+}
+.red_text{
+    color: red;
+}
